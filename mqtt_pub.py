@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4 nu
 #
 # Based on https://weechat.org/scripts/source/mqtt_notify.py.html/
@@ -59,7 +60,7 @@ def weechat_on_msg_cb(*a):
     keys.append('buffer_long')
     keys.append('buffer_full')
     keys.append('buffer')
-
+    
     # escape " (with \\ so that it is compatible with js JSON.parse)
     for key in keys:
         if isinstance(msg[key], basestring):

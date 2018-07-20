@@ -60,11 +60,14 @@ def weechat_on_msg_cb(*a):
     keys.append('buffer_long')
     keys.append('buffer_full')
     keys.append('buffer')
+   
     
     # escape " (with \\ so that it is compatible with js JSON.parse)
+    # also escape \ with \\ if someone writes a \
+    # uses u'...' because of unicode-compatibility
     for key in keys:
-        if isinstance(msg[key], basestring):
-            msg[key] = msg[key].replace('"', '\\"')
+        if isinstance(msg[key], basestring): 
+            msg[key] = msg[key].replace(u'\\', u'\\\\').replace(u'"', u'\\"')
     
     # build cmd
     cmd = ' '.join([
